@@ -148,7 +148,10 @@ var wheel = {
 
 		var duration = new Date().getTime() - wheel.spinStart;
 		var progress = 0;
+		var progressFake = 0;
 		var finished = false;
+		var change = wheel.angleCurrent + Math.PI / 2;
+		var i = wheel.segments.length - Math.floor((change / (Math.PI * 2)) * wheel.segments.length) - 1;
 
 		if (duration < wheel.upTime) {
 			progress = duration / wheel.upTime;
@@ -156,7 +159,14 @@ var wheel = {
 		} else {
 			progress = duration / wheel.downTime;
 			wheel.angleDelta = wheel.maxSpeed * Math.sin((progress * Math.PI) / 2 + Math.PI / 2);
-			if (progress >= 1) finished = true;
+			// if (progress >= 1) finished = true;
+			if (progress >= 1) {
+				progressFake = duration / wheel.upTime;
+				wheel.angleDelta = wheel.maxSpeed * Math.sin((progress * Math.PI) / 2);
+				if (wheel.segments[i] === 'Ja') {
+					wheel.angleDelta = 0;
+				}
+			}
 		}
 
 		wheel.angleCurrent += wheel.angleDelta;
@@ -204,10 +214,10 @@ var wheel = {
 		if ($.browser.msie) {
 			canvas = document.createElement('canvas');
 			$(canvas)
-				.attr('width', 1000)
+				.attr('width', 600)
 				.attr('height', 600)
-				.attr('id', 'canvas')
-				.appendTo('.wheel');
+				.attr('style', 'display: block;')
+				.attr('id', 'canvas');
 			canvas = G_vmlCanvasManager.initElement(canvas);
 		}
 
@@ -276,7 +286,6 @@ var wheel = {
 		var i = wheel.segments.length - Math.floor((change / (Math.PI * 2)) * wheel.segments.length) - 1;
 
 		if (i < 0) i = i + 17;
-		console.log(i);
 		// Now draw the winning name
 		ctx.textAlign = 'left';
 		ctx.textBaseline = 'middle';

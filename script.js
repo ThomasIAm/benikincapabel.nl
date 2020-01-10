@@ -162,9 +162,10 @@ var wheel = {
 			// if (progress >= 1) finished = true;
 			if (progress >= 1) {
 				progressFake = duration / wheel.upTime;
-				wheel.angleDelta = wheel.maxSpeed * Math.sin((progress * Math.PI) / 2);
+				wheel.angleDelta = wheel.maxSpeed * Math.sin((progressFake * Math.PI) / 2);
 				if (wheel.segments[i] === 'Ja') {
 					wheel.angleDelta = 0;
+					finished = true;
 				}
 			}
 		}

@@ -148,7 +148,6 @@ var wheel = {
 
 		var duration = new Date().getTime() - wheel.spinStart;
 		var progress = 0;
-		var progressFake = 0;
 		var finished = false;
 		var change = wheel.angleCurrent + Math.PI / 2;
 		var i = wheel.segments.length - Math.floor((change / (Math.PI * 2)) * wheel.segments.length) - 1;
@@ -161,8 +160,7 @@ var wheel = {
 			wheel.angleDelta = wheel.maxSpeed * Math.sin((progress * Math.PI) / 2 + Math.PI / 2);
 			// if (progress >= 1) finished = true;
 			if (progress >= 1) {
-				progressFake = duration / wheel.upTime;
-				wheel.angleDelta = wheel.maxSpeed * Math.sin((progressFake * Math.PI) / 2);
+				wheel.angleDelta = wheel.maxSpeed * Math.sin((progress * Math.PI) / 2);
 				if (wheel.segments[i] === 'Ja') {
 					wheel.angleDelta = 0;
 					finished = true;

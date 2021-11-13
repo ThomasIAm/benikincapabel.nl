@@ -300,7 +300,7 @@ var wheel = {
 		var size = wheel.size;
 
 		var segments = wheel.segments;
-		var len = wheel.segments.length;
+		//var len = wheel.segments.length;
 		var colors = wheel.seg_color;
 
 		var value = segments[key];
@@ -338,10 +338,10 @@ var wheel = {
 		var angleCurrent = wheel.angleCurrent;
 		var lastAngle = angleCurrent;
 
-		var segments = wheel.segments;
+		//var segments = wheel.segments;
 		var len = wheel.segments.length;
-		var colors = wheel.colors;
-		var colorsLen = wheel.colors.length;
+		//var colors = wheel.colors;
+		//var colorsLen = wheel.colors.length;
 
 		var centerX = wheel.centerX;
 		var centerY = wheel.centerY;
